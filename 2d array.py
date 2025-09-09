@@ -13,7 +13,6 @@ def print_matrix(matrix):
     for i in range(5):
         print(matrix[i])
 
-
 def sum_marix_itemes(matrix):
     #the function culacte the sum of all the items
     sum_all_items=0
@@ -70,8 +69,6 @@ def where_is_boat(matrix):
     matrix[boat_row+1][boat_cloe-1]="SUBMARINE"
     return matrix
 
-
-
 def cheack_user_sucsees(matirx, row_guess, cloe_guess):
     is_sucsess= False
     if(matirx[row_guess-1][cloe_guess-1]=="SUBMARINE"):
@@ -85,22 +82,38 @@ def cheack_user_sucsees(matirx, row_guess, cloe_guess):
 #הערכים ההתחלתים הם 1,1
 #אם המשתמש הכניס קלא לא תקין לא שואלים שוב פעם, פשוט הוא עובר לתור הבא שלו
 
-#main
-matrix=turn_all_to_empty()
 
+
+#main
+#turn all to empty
+matrix=turn_all_to_empty()
+#locate thr boat
 matrix=where_is_boat(matrix)
 
 print_matrix(matrix)
 
-# user_row= int(input("Hi, enter row guess: "))
-# user_cloe= int(input("Hi, enter clow guess: "))
-#
-# number_of_guess=0
-#
-# player_sucsess=False
-#
-# input_is_okay=check_user_input(user_row, user_cloe)
-#
+
+number_of_guess=0
+
+#turn true or false if the iput of the user is okay
+
+player_sucsess=False
+
+while(player_sucsess==False ):
+    user_row = int(input("Hi, enter row guess: "))
+    user_cloe = int(input("Hi, enter clow guess: "))
+    input_is_okay = check_user_input(user_row, user_cloe)
+    player_sucsess=cheack_user_sucsees(matrix,user_row, user_cloe)
+    if(input_is_okay):
+        if (player_sucsess==True):
+            number_of_guess+=1
+            print("number of guess= ",number_of_guess)
+            print("Congratulations, YOU SUCESS")
+        else:
+            number_of_guess+=1
+
+    else:
+        ("this guess not count as a turn, enter another guesses")
 
 
 
